@@ -2,6 +2,19 @@
   color: red;
 }
 
+.HomeContainer {
+text-align: center;
+font-size: 200%;
+}
+
 .ButtonColor {
   background-color: #01579B;
+}
+
+.ButtonColor:hover {
+  background-color: #0277BD;
+}
+
+.ButtonSize {
+  height: 50px;
 }
