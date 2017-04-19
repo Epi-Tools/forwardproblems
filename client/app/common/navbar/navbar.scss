@@ -1,5 +1,13 @@
 @import '../common';
 
+.NavBarBorderColor {
+    border-color: $primaryColor;
+}
+
 .NavBarColor {
     background-color: $primaryColor;
+}
+
+.NavBarActive {
+  background-color: #0277BD;
 }

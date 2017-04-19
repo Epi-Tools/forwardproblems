@@ -6,6 +6,16 @@ let commentsModule = angular.module('comments', [
   uiRouter
 ])
 
+.config(($stateProvider, $urlRouterProvider) => {
+  "ngInject";
+
+  $stateProvider
+    .state('comments', {
+      url: '/comments',
+      component: 'comments'
+    });
+})
+
 .component('comments', commentsComponent)
 
 .name;
