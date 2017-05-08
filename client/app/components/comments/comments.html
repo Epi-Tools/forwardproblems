@@ -4,7 +4,10 @@
   <form name="commentsForm">
     <div class="form-group" ng-repeat="item in $ctrl.categories" name="commentsForm" ng-submit="$ctrl.comment(commentsForm.$valid)" novalidate>
       <h4>{{ item.name }}</h4>
-      <textarea  class="form-control" ng-model="$ctrl.models[items.name]" ng-attr-id="{{ 'comment' + item.id }}" name="{{ $ctrl.getName(item.id) }}" row="5" maxlength="255" placeholder=""></textarea>
+      <textarea  class="form-control" ng-model="$ctrl.models[item.name]" ng-attr-id="{{ 'comment' + item.id }}" name="{{ $ctrl.getName(item.id) }}" row="5" maxlength="255" placeholder="" ng-maxlength="255" ng-minlength="5"></textarea>
+      <div ng-show="commentsForm['comment' + item.id ].$touched">
+        <span ng-show="commentsForm['comment' + item.id ].$invalid && !commentsForm['comment' + item.id ].$pristine" class="alert-danger">Minimun 5 charactères</span>
+      </div>
     </div>
     <input type="submit" name="submit" ng-disabled="commentsForm.$invalid" class="btn btn-primary btn-lg pull-right" value="Envoyer">
   </form>

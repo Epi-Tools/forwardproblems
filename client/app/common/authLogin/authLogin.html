@@ -5,11 +5,11 @@
       <form name="loginForm" ng-submit="$ctrl.login(loginForm.$valid)" novalidate>
         <input id="login" type="email" name="login" ng-model="login" placeholder="Login" required>
         <div ng-show="loginForm.login.$touched">
-          <span ng-show="loginForm.login.$invalid && !loginForm.login.$pristine" class="alert-danger">Veuillez votre Login</span>
+          <span ng-show="loginForm.login.$invalid && !loginForm.login.$pristine" class="alert-danger">Login</span>
         </div>
         <input id="password" type="password" name="password" ng-model="password" placeholder="Password" required>
         <div ng-show="loginForm.password.$touched">
-          <span ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="alert-danger">Veuillez votre Password</span>
+          <span ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="alert-danger">Password</span>
         </div>
         <input type="submit" name="login" ng-disabled="loginForm.$invalid" class="login loginmodal-submit" value="Login">
       </form>
