@@ -1,14 +1,16 @@
 let CommentsFactory = $http => {
   "ngInject";
-  const comments = null
+  const comments = {}
 
-  const getComments = () => new Promise((s, f) => {
-    if (comments !== null) s(comments)
-    $http.get('http://127.0.0.1:8000/api/pools').then(s).catch(err => console.log(err))
+  const getCategories = () => new Promise((s, f) => {
+    if (comments.categories !== undefined) s(comments.categories)
+    $http.get('http://127.0.0.1:8000/api/categories').then(data => {
+      comments.categories = data.data
+      s(comments.categories)
+    }).catch(f)
   })
 
-
-  return { getComments }
+  return { getCategories }
 }
 
 export default CommentsFactory

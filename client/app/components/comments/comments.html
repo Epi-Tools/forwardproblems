@@ -1,5 +1,12 @@
 <navbar></navbar>
-<div style="margin-top: 75px">
-  <h1>{{ $ctrl.name }} BITE</h1>
+<div class="container" style="margin-top: 75px">
+  <h1>Sondage</h1>
+  <form name="commentsForm">
+    <div class="form-group" ng-repeat="item in $ctrl.categories" name="commentsForm" ng-submit="$ctrl.comment(commentsForm.$valid)" novalidate>
+      <h4>{{ item.name }}</h4>
+      <textarea  class="form-control" ng-model="$ctrl.models[items.name]" ng-attr-id="{{ 'comment' + item.id }}" name="{{ $ctrl.getName(item.id) }}" row="5" maxlength="255" placeholder=""></textarea>
+    </div>
+    <input type="submit" name="submit" ng-disabled="commentsForm.$invalid" class="btn btn-primary btn-lg pull-right" value="Envoyer">
+  </form>
 </div>
 <footer></footer>
