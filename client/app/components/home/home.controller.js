@@ -11,7 +11,7 @@ class HomeController {
 
   openModal() {
     console.log('openModal')
-    this.$rootScope.$emit('openModal', {})
+    this.$rootScope.$emit('openLoginModal', {})
   }
 }
 

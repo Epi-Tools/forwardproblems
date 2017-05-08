@@ -6,7 +6,7 @@ const authFactory = ($http, $localStorage) => {
 
   const user = {}
 
-  const login = (userName, password) => new Promise((s, f) => {
+  const login = (login, password) => new Promise((s, f) => {
     //$http.get('/api/pools').then(s).catch(f)
   })
 
@@ -17,7 +17,7 @@ const authFactory = ($http, $localStorage) => {
 
   const getToken = () => {
     if (user.auth) {
-      if ($localStorage.currentUser === undefined) $localStorage.currentUser = { username: user.name, token: user.token }
+      if ($localStorage.currentUser === undefined) $localStorage.currentUser = { username: user.login, token: user.token }
       return true
     }
     return false

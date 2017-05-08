@@ -1,8 +1,10 @@
 class AuthLoginController {
-  constructor($scope, $rootScope) {
+  constructor($scope, $rootScope, authService) {
     'ngInject';
     this.name = 'authLogin'
-    this.id = '#authLogin'
+    this.id = '#login-modal'
+    this.loginError = null
+    this.authService = authService
     this.activate($scope, $rootScope)
   }
 
@@ -18,8 +20,12 @@ class AuthLoginController {
     return this.id
   }
 
+  login (valid) {
+    if (!valid) return
+  }
+
   activate($scope, $rootScope) {
-    $rootScope.$on('openModal', (event, arg) => {
+    $rootScope.$on('openLoginModal', (event, arg) => {
       this.openModal(this.getId())
     })
   }

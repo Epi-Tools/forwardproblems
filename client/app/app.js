@@ -47,5 +47,4 @@ angular.module('app', [
       if (restrictedPage && !$localStorage.currentUser) $location.path('home')
     })
   })
-
   .component('app', AppComponent)
