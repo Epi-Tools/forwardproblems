@@ -1,6 +1,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import commentsComponent from './comments.component';
+import CommentFactory from './comments.factory';
+
 
 let commentsModule = angular.module('comments', [
   uiRouter
@@ -16,8 +18,11 @@ let commentsModule = angular.module('comments', [
     });
 })
 
-.component('comments', commentsComponent)
+  .component('comments', commentsComponent)
 
-.name;
+  .factory('CommentsService', CommentFactory)
+
+
+  .name;
 
 export default commentsModule;
