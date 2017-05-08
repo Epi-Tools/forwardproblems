@@ -1,9 +1,13 @@
 class CommentsController {
   constructor(CommentsService) {
     "ngInject";
-    console.log(CommentsService.getComments())
-    this.name = 'comments';
+    this.name = 'comments'
+    this.activate(CommentsService)
+  }
+
+  activate (CommentsService) {
+    CommentsService.getComments()
   }
 }
 
-export default CommentsController;
+export default CommentsController

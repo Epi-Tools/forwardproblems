@@ -14,6 +14,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "jquery": "^3.2.1",
+    "ngstorage": "^0.3.11",
     "normalize.css": "^3.0.3",
     "resolve-url-loader": "^2.0.2",
     "url-loader": "^0.5.8"

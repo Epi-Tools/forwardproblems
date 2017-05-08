@@ -1,18 +1,29 @@
 /**
  * Created by carlen on 5/8/17.
  */
-let authFactory = $http => {
+const authFactory = ($http, $localStorage) => {
   "ngInject";
 
-  const login = () => new Promise((s, f) => {
+  const user = {}
+
+  const login = (userName, password) => new Promise((s, f) => {
     //$http.get('/api/pools').then(s).catch(f)
   })
 
-  const logout = () => new Promise((s, f) => {
-//    $http.get('/api/pools').then(s).catch(f)
+  const logout = () => new Promise(s => {
+    delete $localStorage.currentUser
+    s()
   })
 
-  return { login, logout }
+  const getToken = () => {
+    if (user.auth) {
+      if ($localStorage.currentUser === undefined) $localStorage.currentUser = { username: user.name, token: user.token }
+      return true
+    }
+    return false
+  }
+
+  return { login, logout, getToken }
 }
 
 export default authFactory

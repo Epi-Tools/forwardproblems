@@ -3,6 +3,7 @@ const $ = require('jquery')
 window.jQuery = $
 
 import angular from 'angular'
+import 'ngstorage'
 import uiRouter from 'angular-ui-router'
 import uiBootstrap from 'angular-ui-bootstrap'
 import angularJwt from 'angular-jwt'
@@ -13,6 +14,7 @@ import authFactory from './auth.factory'
 import 'normalize.css'
 
 angular.module('app', [
+  'ngStorage',
   uiRouter,
   uiBootstrap,
   angularJwt,
@@ -27,18 +29,23 @@ angular.module('app', [
   })
   .config(($httpProvider, jwtOptionsProvider) => {
     "ngInject";
-    // Please note we're annotating the function so that the $injector works when the file is minified
     jwtOptionsProvider.config({
-      tokenGetter: ['authService', function(authService) {
-        authService.getToken()
-        consone.log(localStorage.getItem('id_token'))
-        return localStorage.getItem('id_token')
-      }]
-    });
-
+      tokenGetter: function Config($location, authService) {
+        "ngInject";
+        if (!authService.getToken()) $location.path('home')
+        return localStorage.getItem('forward:id_token')
+      }
+    })
     $httpProvider.interceptors.push('jwtInterceptor')
   })
   .factory('authService', authFactory)
-
+  .run(($rootScope, $location, $localStorage) => {
+    "ngInject";
+    $rootScope.$on('$locationChangeStart', () => {
+      const publicPages = [ '/' ]
+      const restrictedPage = publicPages.indexOf($location.path()) === -1
+      if (restrictedPage && !$localStorage.currentUser) $location.path('home')
+    })
+  })
 
   .component('app', AppComponent)
