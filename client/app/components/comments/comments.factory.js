@@ -4,7 +4,7 @@ let CommentsFactory = $http => {
 
   const getComments = () => new Promise((s, f) => {
     if (comments !== null) s(comments)
-    $http.get('/api/pools').then(s).catch(err => console.log(err))
+    $http.get('http://127.0.0.1:8000/api/pools').then(s).catch(err => console.log(err))
   })
 
 

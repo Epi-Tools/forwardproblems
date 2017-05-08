@@ -5,14 +5,15 @@ class AuthLoginController {
     this.id = '#login-modal'
     this.loginError = null
     this.authService = authService
+    this.scope = $scope
     this.activate($scope, $rootScope)
   }
 
-  openModal (id) {
+  static openModal (id) {
     $(id).modal('show')
   }
 
-  closeModal(id) {
+  static closeModal(id) {
     $(id).modal('hide')
   }
 
@@ -22,11 +23,17 @@ class AuthLoginController {
 
   login (valid) {
     if (!valid) return
+    this.authService.login(this.scope.login, this.scope.password).then(() => {
+      AuthLoginController.closeModal(this.getId())
+    }).catch(err => {
+      this.loginError = err.data.message
+      this.scope.$apply()
+    })
   }
 
   activate($scope, $rootScope) {
     $rootScope.$on('openLoginModal', (event, arg) => {
-      this.openModal(this.getId())
+      AuthLoginController.openModal(this.getId())
     })
   }
 }

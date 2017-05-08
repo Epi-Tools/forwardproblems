@@ -30,10 +30,11 @@ angular.module('app', [
   .config(($httpProvider, jwtOptionsProvider) => {
     "ngInject";
     jwtOptionsProvider.config({
-      tokenGetter: function Config($location, authService) {
+      whiteListedDomains: 'http://127.0.0.1:8000',
+      tokenGetter: function Config($location, $localStorage, authService) {
         "ngInject";
         if (!authService.getToken()) $location.path('home')
-        return localStorage.getItem('forward:id_token')
+        return $localStorage.forwardtoken
       }
     })
     $httpProvider.interceptors.push('jwtInterceptor')
@@ -44,7 +45,7 @@ angular.module('app', [
     $rootScope.$on('$locationChangeStart', () => {
       const publicPages = [ '/' ]
       const restrictedPage = publicPages.indexOf($location.path()) === -1
-      if (restrictedPage && !$localStorage.currentUser) $location.path('home')
+      if (restrictedPage && !$localStorage.forwardtoken) $location.path('home')
     })
   })
   .component('app', AppComponent)
