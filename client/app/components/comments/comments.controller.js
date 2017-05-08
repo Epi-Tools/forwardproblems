@@ -1,13 +1,15 @@
 class CommentsController {
-  constructor($scope, CommentsService) {
+  constructor($scope, CommentsService, $localStorage, $location) {
     "ngInject";
     this.name = 'comments'
     this.scope = $scope;
     this.CommentsService = CommentsService
+    this.location = $location
     this.categories = []
     this.models = {}
     this.successSend = null
     this.errorSend = null
+    this.isAdmin = $localStorage.currentUser.acl
     this.activate(CommentsService)
   }
 
@@ -17,6 +19,10 @@ class CommentsController {
 
   getCategoriesById (id) {
     return this.categories.filter(e => +e.id === +id)[0]
+  }
+
+  goToPoolsAdmin() {
+    this.location.path('pools')
   }
 
   //TODO(carlendev) spinner

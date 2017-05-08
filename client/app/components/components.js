@@ -1,12 +1,14 @@
 import angular from 'angular';
 import Home from './home/home';
 import Comments from './comments/comments';
+import Pools from './pools/pools';
 
-let componentModule = angular.module('app.components', [
+const componentModule = angular.module('app.components', [
   Home,
-  Comments
+  Comments,
+  Pools
 ])
 
-.name;
+.name
 
-export default componentModule;
+export default componentModule
