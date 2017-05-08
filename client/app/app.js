@@ -9,6 +9,7 @@ import angularJwt from 'angular-jwt'
 import Common from './common/common'
 import Components from './components/components'
 import AppComponent from './app.component'
+import authFactory from './auth.factory'
 import 'normalize.css'
 
 angular.module('app', [
@@ -37,6 +38,7 @@ angular.module('app', [
 
     $httpProvider.interceptors.push('jwtInterceptor')
   })
+  .factory('authService', authFactory)
 
 
   .component('app', AppComponent)

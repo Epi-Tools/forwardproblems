@@ -1,10 +1,12 @@
 let CommentsFactory = $http => {
   "ngInject";
-  const comments = {}
+  const comments = null
 
-  const getComments = () => {
-    return comments
-  }
+  const getComments = () => new Promise((s, f) => {
+    if (comments !== null) s(comments)
+    $http.get('/api/pools').then(s).catch(f)
+  })
+
 
   return { getComments }
 }
