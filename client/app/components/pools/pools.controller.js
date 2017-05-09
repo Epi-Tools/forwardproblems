@@ -30,6 +30,11 @@ class PoolsController {
     PoolsController.openModal(this.id)
   }
 
+  openMessages(item) {
+    this.localStorage.currentMessageId = item.id
+    this.location.path('messages')
+  }
+
   add(valid) {
     if (!valid) return
     console.log(this.localStorage.currentUser)
@@ -47,13 +52,14 @@ class PoolsController {
 
   activate() {
     if (this.localStorage.currentUser.acl !== 1) {
+      console.log("redirection")
       this.location.path('home')
       return
     }
     this.PoolsService.getPools().then(data => {
       this.pools = data
       this.scope.$apply()
-    }).catch(console.error)
+    }).catch(err => console.log(err))
   }
 }
 
