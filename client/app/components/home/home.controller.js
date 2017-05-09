@@ -6,7 +6,7 @@ class HomeController {
     this.scope = $scope
     this.localStorage = $localStorage
     this.activate($scope, $rootScope)
-    this.isConnected = this.localStorage.token === undefined
+    this.isConnected = this.localStorage.forwardtoken === undefined
     this.activate($scope, $rootScope)
   }
 

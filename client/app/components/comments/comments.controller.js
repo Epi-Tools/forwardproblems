@@ -5,6 +5,7 @@ class CommentsController {
     this.scope = $scope;
     this.CommentsService = CommentsService
     this.location = $location
+    this.localStorage = $localStorage
     this.categories = []
     this.models = {}
     this.successSend = null
@@ -31,19 +32,18 @@ class CommentsController {
     const keys = Object.keys(this.models)
     const len = keys.length
     let send = false
+    const userName = this.localStorage.currentUser.username
     for (let i = 0; i < len; ++i)  {
       const current = this.models[keys[i]]
       if (current !== null && current !== undefined && current !== '') {
         this.CommentsService.getMaxPoolsId().then(id => {
-          this.CommentsService.postMessage(current, this.getCategoriesById(+keys[i]).id, +id).then(data => {
-            console.log(data)
+          this.CommentsService.postMessage(current, this.getCategoriesById(+keys[i]).id, +id, userName).then(data => {
             this.errorSend = null
             this.successSend = 'Messages envoyés'
             send = true
           }).catch(() => {
             i = len + 1
             this.errorSend = 'Send Error'
-            this.scope.$apply()
           })
         }).catch(() => {
           i = len + 1
