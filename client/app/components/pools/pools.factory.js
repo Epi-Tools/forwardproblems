@@ -6,17 +6,15 @@ const PoolsFactory = $http => {
   const pools = {}
 
   const getPools = () => new Promise((s, f) => {
-    if (pools.content !== undefined) {
-      s(pools.content)
-      return
-    }
     $http.get('http://127.0.0.1:8000/api/pools').then(data => {
       pools.content = data.data
       s(pools.content)
     }).catch(f)
   })
 
-  return { getPools }
+  const postPools = (name, users_id) => $http.post('http://127.0.0.1:8000/api/pools', { name, users_id })
+
+  return { getPools, postPools }
 }
 
 export default PoolsFactory

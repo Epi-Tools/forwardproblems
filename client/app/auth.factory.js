@@ -10,6 +10,7 @@ const authFactory = ($http, $localStorage) => {
     $http.post('http://127.0.0.1:8000/login', { login, password }).then(data => {
       user.login = login
       user.acl = data.data.acl
+      user.id = data.data.id
       user.token = data.data.token
       user.auth = true
       s(data)
@@ -24,8 +25,8 @@ const authFactory = ($http, $localStorage) => {
 
   const getToken = () => {
     if (user.auth) {
+      $localStorage.currentUser = { username: user.login, acl: user.acl, id: user.id }
       if ($localStorage.forwardtoken === undefined) {
-        $localStorage.currentUser = { username: user.login, acl: user.acl }
         $localStorage.forwardtoken= user.token
       }
       return true
@@ -33,7 +34,9 @@ const authFactory = ($http, $localStorage) => {
     return false
   }
 
-  return { login, logout, getToken }
+  const getUserId = () => $localStorage.currentUser.id
+
+  return { login, logout, getToken, getUserId }
 }
 
 export default authFactory
