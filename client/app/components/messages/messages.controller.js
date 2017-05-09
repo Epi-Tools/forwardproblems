@@ -6,6 +6,7 @@ class MessagesController {
     this.location = $location
     this.scope = $scope
     this.MessagesService = MessagesService
+    this.poolsName = this.localStorage.currentMessageName
     this.data = {}
     this.activate()
   }

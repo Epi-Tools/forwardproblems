@@ -32,6 +32,7 @@ class PoolsController {
 
   openMessages(item) {
     this.localStorage.currentMessageId = item.id
+    this.localStorage.currentMessageName = item.name
     this.location.path('messages')
   }
 
