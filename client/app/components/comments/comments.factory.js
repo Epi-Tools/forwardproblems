@@ -24,8 +24,8 @@ const CommentsFactory = $http => {
     }).catch(f)
   })
 
-  const postMessage = (message, categories_id, pools_id) =>
-    $http.post('http://127.0.0.1:8000/api/messages', { message, categories_id, pools_id })
+  const postMessage = (message, categories_id, pools_id, username) =>
+    $http.post('http://127.0.0.1:8000/api/messages', { message, categories_id, pools_id, username })
 
   return { getCategories, postMessage, getMaxPoolsId }
 }

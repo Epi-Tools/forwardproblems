@@ -13,6 +13,7 @@
         </div>
         <input type="submit" name="login" ng-disabled="loginForm.$invalid" class="login loginmodal-submit" value="Login">
       </form>
+      <span us-spinner spinner-key="loginSpinner"></span>
       <div class="login-help">
         <p class="alert-danger"><strong>{{ $ctrl.loginError }}</strong></p>
       </div>

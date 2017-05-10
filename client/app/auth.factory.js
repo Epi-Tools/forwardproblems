@@ -4,12 +4,13 @@
 const authFactory = ($http, $localStorage) => {
   "ngInject";
 
-  const user = {}
+  let user = {}
 
   const login = (login, password) => new Promise((s, f) => {
     $http.post('http://127.0.0.1:8000/login', { login, password }).then(data => {
       user.login = login
       user.acl = data.data.acl
+      user.id = data.data.id
       user.token = data.data.token
       user.auth = true
       s(data)
@@ -23,17 +24,22 @@ const authFactory = ($http, $localStorage) => {
   })
 
   const getToken = () => {
+    if ($localStorage.currentUser !== undefined && $localStorage.forwardtoken !== undefined) {
+      user = $localStorage.currentUser
+      user.token = $localStorage.forwardtoken
+      return true
+    }
     if (user.auth) {
-      if ($localStorage.forwardtoken === undefined) {
-        $localStorage.currentUser = { username: user.login, acl: user.acl }
-        $localStorage.forwardtoken= user.token
-      }
+      $localStorage.currentUser = { username: user.login, acl: user.acl, id: user.id }
+      $localStorage.forwardtoken = user.token
       return true
     }
     return false
   }
 
-  return { login, logout, getToken }
+  const getUserId = () => $localStorage.currentUser.id
+
+  return { login, logout, getToken, getUserId }
 }
 
 export default authFactory

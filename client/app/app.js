@@ -4,6 +4,7 @@ window.jQuery = $
 
 import angular from 'angular'
 import 'ngstorage'
+import 'angular-spinner'
 import uiRouter from 'angular-ui-router'
 import uiBootstrap from 'angular-ui-bootstrap'
 import angularJwt from 'angular-jwt'
@@ -15,6 +16,7 @@ import 'normalize.css'
 
 angular.module('app', [
   'ngStorage',
+  'angularSpinner',
   uiRouter,
   uiBootstrap,
   angularJwt,
