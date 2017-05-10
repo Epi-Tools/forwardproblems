@@ -6,7 +6,6 @@ const MessagesFactory = $http => {
   const messages = {}
 
   const getMessages = id => new Promise((s, f) => {
-    if (messages.content !== undefined) s(messages.content)
     $http.get(`http://127.0.0.1:8000/api/pools/messages/${id}`).then(data => {
       messages.content = data.data
       s(messages.content)

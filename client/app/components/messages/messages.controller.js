@@ -26,11 +26,13 @@ class MessagesController {
     this.MessagesService.getMessages(this.localStorage.currentMessageId).then(data => {
       const categories = MessagesController.nbOfCategories(data)
       categories.forEach(e => this.data[e] = { categories_name: e, data: [] })
-      data.forEach(e => this.data[e.categories_id].data.push(e))
-      this.MessagesService.getCategories().then(data => {
-        data.forEach(e => this.data[e.id].categories_name = e.name)
-        this.scope.$apply()
-      }).catch(console.error)
+      Promise.all([ data.forEach(e => this.data[e.categories_id].data.push(e)) ]).then(() => {
+        this.MessagesService.getCategories().then(data => {
+          data.filter(e => this.data[e.id] !== undefined)
+            .forEach(e => this.data[e.id].categories_name = e.name)
+          this.scope.$apply()
+        }).catch(console.error)
+      })
     }).catch(console.error)
   }
 }
