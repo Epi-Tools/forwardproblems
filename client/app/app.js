@@ -29,7 +29,7 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true)
   })
-  .config(($httpProvider, jwtOptionsProvider) => {
+/*  .config(($httpProvider, jwtOptionsProvider) => {
     "ngInject";
     jwtOptionsProvider.config({
       whiteListedDomains: 'http://127.0.0.1:8000',
@@ -40,14 +40,14 @@ angular.module('app', [
       }
     })
     $httpProvider.interceptors.push('jwtInterceptor')
-  })
+  }) */
   .factory('authService', authFactory)
-  .run(($rootScope, $location, $localStorage) => {
+  /*.run(($rootScope, $location, $localStorage) => {
     "ngInject";
     $rootScope.$on('$locationChangeStart', () => {
       const publicPages = [ '/' ]
       const restrictedPage = publicPages.indexOf($location.path()) === -1
       if (restrictedPage && !$localStorage.forwardtoken) $location.path('home')
     })
-  })
+  })*/
   .component('app', AppComponent)
