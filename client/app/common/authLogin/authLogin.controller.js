@@ -1,5 +1,5 @@
 class AuthLoginController {
-  constructor ($scope, $rootScope, authService, usSpinnerService) {
+  constructor ($scope, $rootScope, authService, usSpinnerService, $location) {
     'ngInject';
     this.name = 'authLogin'
     this.id = '#login-modal'
@@ -8,6 +8,7 @@ class AuthLoginController {
     this.authService = authService
     this.usSpinnerService = usSpinnerService
     this.scope = $scope
+    this.location = $location
     this.rootScope = $rootScope
     this.activate($scope, $rootScope)
   }
@@ -30,7 +31,8 @@ class AuthLoginController {
     this.authService.login(this.scope.login, this.scope.password).then(() => {
       this.usSpinnerService.stop(this.spinnerId)
       AuthLoginController.closeModal(this.getId())
-      this.rootScope.$on('login')
+      this.rootScope.$emit('login')
+      this.location.path('comments')
     }).catch(err => {
       this.loginError = err.data.message
       this.scope.$apply()

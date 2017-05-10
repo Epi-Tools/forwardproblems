@@ -10,7 +10,11 @@ class CommentsController {
     this.models = {}
     this.successSend = null
     this.errorSend = null
-    this.isAdmin = $localStorage.currentUser.acl
+    if (this.localStorage.currentUser === undefined) {
+      this.location.path('home')
+      return
+    }
+    this.isAdmin = this.localStorage.currentUser.acl
     this.activate(CommentsService)
   }
 

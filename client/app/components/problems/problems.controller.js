@@ -1,7 +1,7 @@
 class ProblemsController {
   constructor() {
-    this.name = 'problems';
+    this.name = 'problems'
   }
 }
 
-export default ProblemsController;
+export default ProblemsController

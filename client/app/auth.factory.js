@@ -13,6 +13,7 @@ const authFactory = ($http, $localStorage) => {
       user.id = data.data.id
       user.token = data.data.token
       user.auth = true
+      getToken()
       s(data)
     }).catch(f)
   })

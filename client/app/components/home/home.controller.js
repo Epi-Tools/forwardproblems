@@ -11,9 +11,11 @@ class HomeController {
   }
 
   activate($scope, $rootScope) {
-    $rootScope.$on('login', () => {
+    $rootScope.$on('logout', () => {
       this.isConnected = false
-      this.scope.$apply()
+    })
+    $rootScope.$on('login', () => {
+      this.isConnected = true
     })
   }
 

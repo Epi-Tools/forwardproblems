@@ -15,7 +15,8 @@
       </ul>
       <ul class="nav navbar-nav">
         <li ui-sref-active="NavBarActive"><a ui-sref="problems" style="color: white">Problems</a></li>
-      </ul>    
+      </ul>
+      <p class="navbar-text navbar-right" ng-show="$ctrl.isConnectedStatus() === true"><a class="navbar-link" ng-click="$ctrl.logout()">Se déconnecter</a></p>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
