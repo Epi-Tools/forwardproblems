@@ -1,8 +1,8 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import problemsComponent from './problems.component';
+import angular from 'angular'
+import uiRouter from 'angular-ui-router'
+import problemsComponent from './problems.component'
 
-let problemsModule = angular.module('problems', [
+const problemsModule = angular.module('problems', [
   uiRouter
 ])
 
@@ -18,6 +18,6 @@ let problemsModule = angular.module('problems', [
 
 .component('problems', problemsComponent)
 
-.name;
+.name
 
-export default problemsModule;
+export default problemsModule

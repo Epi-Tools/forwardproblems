@@ -1,9 +1,23 @@
 <navbar></navbar>
 <div class="container">
-  <div class="form-group problems">
-    <label for="comment">Problems</label>
-    <textarea class="form-control" rows="4" id="comment"></textarea>
-  </div>
-  <button type="button" class="btn btn-primary buttonPlace">Envoyer</button>
+  <form name="problemsForm" ng-submit="$ctrl.SubmitProblem(problemsForm.$valid)" novalidate>
+    <div class="form-group problems">
+      <label for="problem">Faire remonter un problème aux délégués</label>
+      <textarea class="form-control" rows="5" id="problem" name="problem" ng-minlength="5" ng-model="problem" required></textarea>
+      <div ng-show="problemsForm.problem.$touched">
+        <span ng-show="problemsForm.problem.$invalid && !problemsForm.problem.$pristine" class="alert-danger">Minimun 5 charactères</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="severity">Importances</label>
+      <select class="form-control" id="severity" name="severity" ng-model="severity" required>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    </div>
+    <input type="submit" name="submit" ng-disabled="problemsForm.$invalid" class="btn btn-primary pull-right" value="Envoyer">
+  </form>
 </div>
 <footer></footer>

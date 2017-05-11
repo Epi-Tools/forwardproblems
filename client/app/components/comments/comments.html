@@ -2,7 +2,7 @@
 <div class="container" style="margin-top: 75px">
   <h1>Sondage</h1>
   <button ng-show="$ctrl.isAdmin" class="btn btn-info" ng-click="$ctrl.goToPoolsAdmin()">Admin</button>
-  <form name="commentsForm" name="commentsForm" ng-submit="$ctrl.comment(commentsForm.$valid)" novalidate>
+  <form name="commentsForm" ng-submit="$ctrl.comment(commentsForm.$valid)" novalidate>
     <div class="form-group" ng-repeat="item in $ctrl.categories">
       <h4>{{ item.name }}</h4>
       <textarea  class="form-control" ng-model="$ctrl.models[item.id]" ng-attr-id="{{ 'comment' + item.id }}" name="{{ $ctrl.getName(item.id) }}" row="5" maxlength="255" placeholder="" ng-maxlength="255" ng-minlength="5"></textarea>
