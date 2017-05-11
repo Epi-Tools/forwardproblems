@@ -1,6 +1,7 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import problemsComponent from './problems.component'
+import ProblemsFactory from './problems.factory'
 
 const problemsModule = angular.module('problems', [
   uiRouter
@@ -16,8 +17,8 @@ const problemsModule = angular.module('problems', [
       })
   })
 
-.component('problems', problemsComponent)
-
-.name
+  .component('problems', problemsComponent)
+  .factory('ProblemsService', ProblemsFactory)
+  .name
 
 export default problemsModule

@@ -33,6 +33,8 @@ class CommentsController {
   //TODO(carlendev) spinner
   comment (valid) {
     if (!valid) return
+    this.successSend = null
+    this.errorSend = null
     const keys = Object.keys(this.models)
     const len = keys.length
     let send = false

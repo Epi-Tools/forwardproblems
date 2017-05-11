@@ -1,6 +1,6 @@
 <navbar></navbar>
 <div class="container">
-  <form name="problemsForm" ng-submit="$ctrl.SubmitProblem(problemsForm.$valid)" novalidate>
+  <form name="problemsForm" ng-submit="$ctrl.submitProblem(problemsForm.$valid)" novalidate>
     <div class="form-group problems">
       <label for="problem">Faire remonter un problème aux délégués</label>
       <textarea class="form-control" rows="5" id="problem" name="problem" ng-minlength="5" ng-model="problem" required></textarea>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="severity">Importances</label>
+      <label for="severity">Importance</label>
       <select class="form-control" id="severity" name="severity" ng-model="severity" required>
         <option>1</option>
         <option>2</option>
@@ -18,6 +18,11 @@
       </select>
     </div>
     <input type="submit" name="submit" ng-disabled="problemsForm.$invalid" class="btn btn-primary pull-right" value="Envoyer">
+    <div class="login-help">
+      <p class="alert-danger"><strong>{{ $ctrl.errorProblem }}</strong></p>
+      <p class="alert-success"><strong>{{ $ctrl.successProblem }}</strong></p>
+    </div>
+    <span us-spinner spinner-key="problemSpinner"></span>
   </form>
 </div>
 <footer></footer>
